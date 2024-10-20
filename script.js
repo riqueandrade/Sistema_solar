@@ -1,3 +1,6 @@
+// Utilize strict mode para melhor detecção de erros
+'use strict';
+
 const planetas = [
     { nome: 'Mercúrio', imagem: 'https://solarsystem.nasa.gov/system/stellar_items/image_files/2_feature_1600x900_mercury.jpg', descricao: 'O planeta mais próximo do Sol.', diametro: 4879, distanciaSol: 57.9, periodoOrbital: 88, temperaturaMedia: 167, numeroLuas: 0 },
     { nome: 'Vênus', imagem: 'https://solarsystem.nasa.gov/system/stellar_items/image_files/3_feature_1600x900_venus.jpg', descricao: 'Conhecido como o "gêmeo" da Terra.', diametro: 12104, distanciaSol: 108.2, periodoOrbital: 225, temperaturaMedia: 464, numeroLuas: 0 },
@@ -20,21 +23,36 @@ const curiosidades = [
 function carregarPlanetas() {
     const listaPlanetas = document.getElementById('lista-planetas');
     listaPlanetas.innerHTML = '';
-    planetas.forEach(planeta => {
+    planetas.forEach((planeta, index) => {
         const planetaHTML = `
             <div class="col">
                 <div class="card h-100 planeta-card" data-planeta="${planeta.nome}">
-                    <img src="${planeta.imagem}" class="card-img-top" alt="${planeta.nome}">
+                    <img src="placeholder.jpg" data-src="${planeta.imagem}" class="card-img-top lazy" alt="${planeta.nome}">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">${planeta.nome}</h5>
                         <p class="card-text flex-grow-1">${planeta.descricao}</p>
-                        <button class="btn btn-primary btn-sm mais-info mt-auto">Mais informações</button>
+                        <button class="btn btn-primary btn-sm mais-info mt-auto" aria-label="Mais informações sobre ${planeta.nome}">Mais informações</button>
                     </div>
                 </div>
             </div>
         `;
         listaPlanetas.innerHTML += planetaHTML;
     });
+
+    // Implementar lazy loading para imagens
+    const lazyImages = document.querySelectorAll('img.lazy');
+    const lazyLoadObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.classList.remove('lazy');
+                observer.unobserve(img);
+            }
+        });
+    });
+
+    lazyImages.forEach(img => lazyLoadObserver.observe(img));
 
     // Adicionar event listeners para os botões "Mais informações"
     document.querySelectorAll('.mais-info').forEach(botao => {
@@ -96,51 +114,25 @@ function fecharNavbar() {
     }
 }
 
-function criarVisualizacaoSistemaSolar() {
-    const sistemaSolar = document.getElementById('sistema-solar');
-    sistemaSolar.innerHTML = '<div class="sol"></div>';
-    
-    const cores = ['#8A8A8A', '#E29468', '#4F97D3', '#D14C32', '#D2691E', '#F4D03F', '#89CFF0', '#3498DB'];
-    
-    const larguraSistemaSolar = sistemaSolar.offsetWidth;
-    const fatorEscala = larguraSistemaSolar / 1000; // Ajuste este valor conforme necessário
-    
-    planetas.forEach((planeta, index) => {
-        const orbitaElement = document.createElement('div');
-        orbitaElement.classList.add('orbita');
-        const orbitaSize = (index + 2) * 25 * fatorEscala;
-        orbitaElement.style.width = `${orbitaSize}px`;
-        orbitaElement.style.height = `${orbitaSize}px`;
-        
-        const planetaElement = document.createElement('div');
-        planetaElement.classList.add('planeta');
-        const planetaSize = Math.max(4, (6 + index * 1.5) * fatorEscala);
-        planetaElement.style.width = `${planetaSize}px`;
-        planetaElement.style.height = `${planetaSize}px`;
-        planetaElement.style.backgroundColor = cores[index];
-        
-        const nomeElement = document.createElement('div');
-        nomeElement.classList.add('planeta-nome');
-        nomeElement.textContent = planeta.nome;
-        planetaElement.appendChild(nomeElement);
-        
-        planetaElement.addEventListener('click', mostrarDetalhes);
-        
-        orbitaElement.appendChild(planetaElement);
-        sistemaSolar.appendChild(orbitaElement);
-    });
-}
-
-// Adicione este evento para recriar a visualização quando a janela for redimensionada
-window.addEventListener('resize', criarVisualizacaoSistemaSolar);
-
-document.addEventListener('DOMContentLoaded', () => {
+function inicializarApp() {
     carregarPlanetas();
     carregarCuriosidades();
-    criarVisualizacaoSistemaSolar();
 
     // Adicionar event listeners para os links da navbar
     document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
         link.addEventListener('click', fecharNavbar);
     });
-});
+
+    // Adicionar smooth scrolling para links internos
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+}
+
+// Inicializar a aplicação quando o DOM estiver carregado
+document.addEventListener('DOMContentLoaded', inicializarApp);

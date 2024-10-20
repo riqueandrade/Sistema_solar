@@ -1,13 +1,23 @@
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --background-color: #000;
+    --text-color: #fff;
+    --card-bg-color: rgba(255, 255, 255, 0.1);
+    --hover-color: rgba(255, 255, 255, 0.2);
+}
+
 body {
-    background-color: #000;
-    color: #fff;
-    background-image: url('https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80');
+    background-color: var(--background-color);
+    color: var(--text-color);
+    background-image: url('path/to/space-background.jpg');
     background-attachment: fixed;
     background-size: cover;
+    font-family: 'Arial', sans-serif;
 }
 
 .card {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: var(--card-bg-color);
     border: none;
     transition: transform 0.3s ease-in-out;
     backdrop-filter: blur(5px);
@@ -15,11 +25,11 @@ body {
 
 .card:hover {
     transform: scale(1.05);
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: var(--hover-color);
 }
 
 .card-title {
-    color: #fff;
+    color: var(--text-color);
     font-weight: bold;
 }
 
@@ -33,8 +43,8 @@ body {
 }
 
 .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
 }
 
 .btn-primary:hover {
@@ -45,16 +55,16 @@ body {
 /* Estilos para o modal */
 .modal-content {
     background-color: rgba(0, 0, 0, 0.9);
-    color: #fff;
-    border: 1px solid #007bff;
+    color: var(--text-color);
+    border: 1px solid var(--primary-color);
 }
 
 .modal-header {
-    border-bottom: 1px solid #007bff;
+    border-bottom: 1px solid var(--primary-color);
 }
 
 .modal-title {
-    color: #007bff;
+    color: var(--primary-color);
 }
 
 .modal-body img {
@@ -69,7 +79,7 @@ body {
 }
 
 .btn-close {
-    color: #fff;
+    color: var(--text-color);
     opacity: 0.8;
 }
 
@@ -86,7 +96,7 @@ body {
 }
 
 #curiosidades h2 {
-    color: #007bff;
+    color: var(--primary-color);
 }
 
 #lista-curiosidades {
@@ -97,18 +107,18 @@ body {
 #lista-curiosidades li {
     margin-bottom: 10px;
     padding: 10px;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--card-bg-color);
     border-radius: 5px;
 }
 
 /* Estilos para o footer */
 footer {
     background-color: rgba(0, 0, 0, 0.8) !important;
-    border-top: 1px solid #007bff;
+    border-top: 1px solid var(--primary-color);
 }
 
 footer h5 {
-    color: #007bff;
+    color: var(--primary-color);
     margin-bottom: 1rem;
 }
 
@@ -123,11 +133,11 @@ footer a {
 }
 
 footer a:hover {
-    color: #fff;
+    color: var(--text-color);
 }
 
 footer hr {
-    border-color: #007bff;
+    border-color: var(--primary-color);
     opacity: 0.5;
 }
 
@@ -137,112 +147,113 @@ footer .fab {
 }
 
 footer .fab:hover {
-    color: #007bff;
+    color: var(--primary-color);
 }
 
-/* Estilos para a visualização do Sistema Solar */
-#sistema-solar {
-    position: relative;
-    width: 100%;
-    height: 300px; /* Reduzido de 500px para 300px */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Ajuste o layout para ocupar o espaço deixado pela visualização do sistema solar */
+#planetas {
+    margin-top: 2rem;
+}
+
+@media (min-width: 992px) {
+    #curiosidades {
+        position: sticky;
+        top: 20px;
+    }
+}
+
+/* Ajustes gerais */
+#curiosidades {
+    position: sticky;
+    top: 20px;
+}
+
+#lista-curiosidades .list-group-item {
+    background-color: var(--card-bg-color);
+    color: var(--text-color);
+    border: none;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 991px) {
+    #curiosidades {
+        position: static;
+        margin-top: 2rem;
+    }
+}
+
+/* Ajustes para o modal */
+.modal-dialog {
+    max-width: 800px;
+    margin: 1.75rem auto;
+}
+
+/* Adicione estas novas classes para melhorar a acessibilidade e o design */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
     overflow: hidden;
-    background-color: rgba(0, 0, 0, 0.8);
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.planet-info {
+    background-color: var(--card-bg-color);
     border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
 }
 
-.sol {
-    width: 40px; /* Reduzido de 80px para 40px */
-    height: 40px; /* Reduzido de 80px para 40px */
-    background-color: #FFD700;
-    border-radius: 50%;
-    box-shadow: 0 0 20px #FFD700; /* Reduzido o brilho */
-    position: absolute;
-    z-index: 10;
+.planet-info h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
 }
 
-.orbita {
-    position: absolute;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    animation: orbitar linear infinite;
-}
+/* Responsividade para múltiplos tamanhos de tela */
 
-.planeta {
-    position: absolute;
-    border-radius: 50%;
-    transform: translateX(-50%);
-    transition: box-shadow 0.3s ease;
-}
-
-.planeta:hover {
-    cursor: pointer;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Reduzido o brilho do hover */
-}
-
-.planeta-nome {
-    position: absolute;
-    color: white;
-    font-size: 10px; /* Reduzido de 12px para 10px */
-    text-align: center;
-    width: 80px; /* Reduzido de 100px para 80px */
-    left: 50%;
-    transform: translateX(-50%);
-    top: -15px; /* Ajustado de -20px para -15px */
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.planeta:hover .planeta-nome {
-    opacity: 1;
-}
-
-@keyframes orbitar {
-    from {
-        transform: rotate(0deg);
+/* Extra small devices (phones, less than 576px) */
+@media (max-width: 575.98px) {
+    .card-img-top {
+        height: 120px;
     }
-    to {
-        transform: rotate(360deg);
+
+    #sistema-solar {
+        height: 150px;
+    }
+
+    .sol {
+        width: 20px;
+        height: 20px;
+    }
+
+    .planeta {
+        width: 6px;
+        height: 6px;
+    }
+
+    .planeta-nome {
+        font-size: 7px;
+        width: 50px;
+    }
+
+    .modal-dialog {
+        max-width: 95%;
+        margin: 0.5rem auto;
+    }
+
+    .modal-body img {
+        max-height: 200px;
     }
 }
 
-/* Ajuste as durações da animação para cada planeta */
-.orbita:nth-child(2) { animation-duration: 3s; }
-.orbita:nth-child(3) { animation-duration: 4s; }
-.orbita:nth-child(4) { animation-duration: 5s; }
-.orbita:nth-child(5) { animation-duration: 6s; }
-.orbita:nth-child(6) { animation-duration: 7s; }
-.orbita:nth-child(7) { animation-duration: 8s; }
-.orbita:nth-child(8) { animation-duration: 9s; }
-.orbita:nth-child(9) { animation-duration: 10s; }
-
-/* Animações suaves */
-.card, .btn, .modal {
-    transition: all 0.3s ease-in-out;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
-}
-
-.btn:hover {
-    transform: translateY(-2px);
-}
-
-.modal.fade .modal-dialog {
-    transition: transform 0.3s ease-out;
-    transform: scale(0.9);
-}
-
-.modal.show .modal-dialog {
-    transform: scale(1);
-}
-
-/* Melhorias na responsividade e layout */
-@media (max-width: 767px) {
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
     .card-img-top {
         height: 150px;
     }
@@ -257,17 +268,26 @@ footer .fab:hover {
     }
 
     .planeta {
-        width: 10px;
-        height: 10px;
+        width: 8px;
+        height: 8px;
     }
 
     .planeta-nome {
         font-size: 8px;
         width: 60px;
     }
+
+    .modal-dialog {
+        max-width: 90%;
+    }
+
+    .modal-body img {
+        max-height: 250px;
+    }
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
     .card-img-top {
         height: 175px;
     }
@@ -280,89 +300,19 @@ footer .fab:hover {
         width: 40px;
         height: 40px;
     }
-}
 
-#sistema-solar {
-    margin-bottom: 2rem;
-    max-width: 100%;
-    overflow-x: auto;
-}
-
-.orbita {
-    border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.planeta {
-    top: -10px;
-}
-
-/* Ajustes gerais */
-#curiosidades {
-    position: sticky;
-    top: 20px;
-}
-
-#lista-curiosidades .list-group-item {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #fff;
-    border: none;
-    margin-bottom: 10px;
-    border-radius: 5px;
-}
-
-/* Ajustes para telas menores */
-@media (max-width: 991px) {
-    #curiosidades {
-        position: static;
-        margin-top: 2rem;
+    .planeta {
+        width: 10px;
+        height: 10px;
     }
-}
 
-/* Melhorias na visualização do Sistema Solar */
-.sol {
-    width: 60px;
-    height: 60px;
-}
-
-.orbita:nth-child(1) { animation-duration: 4s; }
-.orbita:nth-child(2) { animation-duration: 6s; }
-.orbita:nth-child(3) { animation-duration: 8s; }
-.orbita:nth-child(4) { animation-duration: 10s; }
-.orbita:nth-child(5) { animation-duration: 12s; }
-.orbita:nth-child(6) { animation-duration: 14s; }
-.orbita:nth-child(7) { animation-duration: 16s; }
-.orbita:nth-child(8) { animation-duration: 18s; }
-
-/* Ajuste no footer para telas menores */
-@media (max-width: 767px) {
-    footer .col-md-4 {
-        margin-bottom: 2rem;
+    .planeta-nome {
+        font-size: 9px;
+        width: 70px;
     }
-}
 
-/* Ajustes nos cards dos planetas */
-.card {
-    height: 100%;
-}
-
-.card-body {
-    display: flex;
-    flex-direction: column;
-}
-
-.card-text {
-    flex-grow: 1;
-}
-
-.btn-primary {
-    align-self: flex-start;
-}
-
-/* Responsividade para o modal */
-@media (max-width: 767px) {
     .modal-dialog {
-        max-width: 95%;
-        margin: 1rem auto;
+        max-width: 80%;
     }
 
     .modal-body img {
@@ -370,8 +320,114 @@ footer .fab:hover {
     }
 }
 
-/* Ajustes para o modal */
-.modal-dialog {
-    max-width: 800px;
-    margin: 1.75rem auto;
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .card-img-top {
+        height: 200px;
+    }
+
+    #sistema-solar {
+        height: 300px;
+    }
+
+    .sol {
+        width: 50px;
+        height: 50px;
+    }
+
+    .planeta {
+        width: 12px;
+        height: 12px;
+    }
+
+    .planeta-nome {
+        font-size: 10px;
+        width: 80px;
+    }
+
+    .modal-dialog {
+        max-width: 70%;
+    }
+
+    .modal-body img {
+        max-height: 350px;
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .card-img-top {
+        height: 225px;
+    }
+
+    #sistema-solar {
+        height: 400px;
+    }
+
+    .sol {
+        width: 60px;
+        height: 60px;
+    }
+
+    .planeta {
+        width: 15px;
+        height: 15px;
+    }
+
+    .planeta-nome {
+        font-size: 12px;
+        width: 100px;
+    }
+
+    .modal-dialog {
+        max-width: 800px;
+    }
+
+    .modal-body img {
+        max-height: 400px;
+    }
+}
+
+/* Ajustes gerais para todos os tamanhos de tela */
+.modal-content {
+    background-color: rgba(0, 0, 0, 0.9);
+    color: var(--text-color);
+    border: 1px solid var(--primary-color);
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--primary-color);
+}
+
+.modal-body {
+    padding: 1rem;
+}
+
+.modal-body img {
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+    display: block;
+    margin: 0 auto 1rem;
+}
+
+/* Ajustes para o layout dos planetas em diferentes tamanhos de tela */
+@media (max-width: 575.98px) {
+    #lista-planetas .col {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+    #lista-planetas .col {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    #lista-planetas .col {
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+    }
 }
