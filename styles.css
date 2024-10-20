@@ -1,0 +1,377 @@
+body {
+    background-color: #000;
+    color: #fff;
+    background-image: url('https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80');
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    transition: transform 0.3s ease-in-out;
+    backdrop-filter: blur(5px);
+}
+
+.card:hover {
+    transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.card-title {
+    color: #fff;
+    font-weight: bold;
+}
+
+.card-text {
+    color: #e6e6e6;
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* Estilos para o modal */
+.modal-content {
+    background-color: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    border: 1px solid #007bff;
+}
+
+.modal-header {
+    border-bottom: 1px solid #007bff;
+}
+
+.modal-title {
+    color: #007bff;
+}
+
+.modal-body img {
+    max-width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+    display: block;
+    margin: 0 auto 1rem;
+}
+
+.btn-close {
+    color: #fff;
+    opacity: 0.8;
+}
+
+.btn-close:hover {
+    opacity: 1;
+}
+
+/* Estilo para a seção de curiosidades */
+#curiosidades {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 30px;
+}
+
+#curiosidades h2 {
+    color: #007bff;
+}
+
+#lista-curiosidades {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+#lista-curiosidades li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
+
+/* Estilos para o footer */
+footer {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    border-top: 1px solid #007bff;
+}
+
+footer h5 {
+    color: #007bff;
+    margin-bottom: 1rem;
+}
+
+footer ul li {
+    margin-bottom: 0.5rem;
+}
+
+footer a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #fff;
+}
+
+footer hr {
+    border-color: #007bff;
+    opacity: 0.5;
+}
+
+footer .fab {
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+footer .fab:hover {
+    color: #007bff;
+}
+
+/* Estilos para a visualização do Sistema Solar */
+#sistema-solar {
+    position: relative;
+    width: 100%;
+    height: 300px; /* Reduzido de 500px para 300px */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+}
+
+.sol {
+    width: 40px; /* Reduzido de 80px para 40px */
+    height: 40px; /* Reduzido de 80px para 40px */
+    background-color: #FFD700;
+    border-radius: 50%;
+    box-shadow: 0 0 20px #FFD700; /* Reduzido o brilho */
+    position: absolute;
+    z-index: 10;
+}
+
+.orbita {
+    position: absolute;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    animation: orbitar linear infinite;
+}
+
+.planeta {
+    position: absolute;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    transition: box-shadow 0.3s ease;
+}
+
+.planeta:hover {
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Reduzido o brilho do hover */
+}
+
+.planeta-nome {
+    position: absolute;
+    color: white;
+    font-size: 10px; /* Reduzido de 12px para 10px */
+    text-align: center;
+    width: 80px; /* Reduzido de 100px para 80px */
+    left: 50%;
+    transform: translateX(-50%);
+    top: -15px; /* Ajustado de -20px para -15px */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.planeta:hover .planeta-nome {
+    opacity: 1;
+}
+
+@keyframes orbitar {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Ajuste as durações da animação para cada planeta */
+.orbita:nth-child(2) { animation-duration: 3s; }
+.orbita:nth-child(3) { animation-duration: 4s; }
+.orbita:nth-child(4) { animation-duration: 5s; }
+.orbita:nth-child(5) { animation-duration: 6s; }
+.orbita:nth-child(6) { animation-duration: 7s; }
+.orbita:nth-child(7) { animation-duration: 8s; }
+.orbita:nth-child(8) { animation-duration: 9s; }
+.orbita:nth-child(9) { animation-duration: 10s; }
+
+/* Animações suaves */
+.card, .btn, .modal {
+    transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.modal.fade .modal-dialog {
+    transition: transform 0.3s ease-out;
+    transform: scale(0.9);
+}
+
+.modal.show .modal-dialog {
+    transform: scale(1);
+}
+
+/* Melhorias na responsividade e layout */
+@media (max-width: 767px) {
+    .card-img-top {
+        height: 150px;
+    }
+
+    #sistema-solar {
+        height: 200px;
+    }
+
+    .sol {
+        width: 30px;
+        height: 30px;
+    }
+
+    .planeta {
+        width: 10px;
+        height: 10px;
+    }
+
+    .planeta-nome {
+        font-size: 8px;
+        width: 60px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .card-img-top {
+        height: 175px;
+    }
+
+    #sistema-solar {
+        height: 250px;
+    }
+
+    .sol {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+#sistema-solar {
+    margin-bottom: 2rem;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.orbita {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.planeta {
+    top: -10px;
+}
+
+/* Ajustes gerais */
+#curiosidades {
+    position: sticky;
+    top: 20px;
+}
+
+#lista-curiosidades .list-group-item {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: none;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 991px) {
+    #curiosidades {
+        position: static;
+        margin-top: 2rem;
+    }
+}
+
+/* Melhorias na visualização do Sistema Solar */
+.sol {
+    width: 60px;
+    height: 60px;
+}
+
+.orbita:nth-child(1) { animation-duration: 4s; }
+.orbita:nth-child(2) { animation-duration: 6s; }
+.orbita:nth-child(3) { animation-duration: 8s; }
+.orbita:nth-child(4) { animation-duration: 10s; }
+.orbita:nth-child(5) { animation-duration: 12s; }
+.orbita:nth-child(6) { animation-duration: 14s; }
+.orbita:nth-child(7) { animation-duration: 16s; }
+.orbita:nth-child(8) { animation-duration: 18s; }
+
+/* Ajuste no footer para telas menores */
+@media (max-width: 767px) {
+    footer .col-md-4 {
+        margin-bottom: 2rem;
+    }
+}
+
+/* Ajustes nos cards dos planetas */
+.card {
+    height: 100%;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-text {
+    flex-grow: 1;
+}
+
+.btn-primary {
+    align-self: flex-start;
+}
+
+/* Responsividade para o modal */
+@media (max-width: 767px) {
+    .modal-dialog {
+        max-width: 95%;
+        margin: 1rem auto;
+    }
+
+    .modal-body img {
+        max-height: 300px;
+    }
+}
+
+/* Ajustes para o modal */
+.modal-dialog {
+    max-width: 800px;
+    margin: 1.75rem auto;
+}
